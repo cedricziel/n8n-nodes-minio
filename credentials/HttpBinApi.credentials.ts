@@ -8,7 +8,7 @@ import {
 export class HttpBinApi implements ICredentialType {
 	name = 'httpbinApi';
 	displayName = 'HttpBin API';
-	documentationUrl = '<your-docs-url>';
+	documentationUrl = 'https://github.com/cedricziel/n8n-nodes-minio';
 	properties: INodeProperties[] = [
 		{
 			displayName: 'Token',
