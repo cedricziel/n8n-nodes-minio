@@ -136,7 +136,9 @@ export class MinIO implements INodeType {
 
 			const operation = this.getNodeParameter('operation', itemIndex) as string;
 
-			const bucket = this.getNodeParameter('bucket', itemIndex) as string;
+			const bucket = this.getNodeParameter('bucket', itemIndex, '', {
+				extractValue: true,
+			}) as string;
 			const key = this.getNodeParameter('key', itemIndex) as string;
 
 			switch (operation) {
