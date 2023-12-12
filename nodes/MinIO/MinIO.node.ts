@@ -44,9 +44,19 @@ export class MinIO implements INodeType {
 				default: 'presignedGetObject',
 				options: [
 					{
-						name: 'Presigned GET',
+						name: 'Presigned GET URL',
 						value: 'presignedGetObject',
 						description: 'Generate a presigned GET URL',
+						displayOptions: {
+							show: {
+								resource: ['object'],
+							},
+						},
+					},
+					{
+						name: 'Presigned PUT URL',
+						value: 'presignedPutObject',
+						description: 'Generate a presigned PUT URL',
 						displayOptions: {
 							show: {
 								resource: ['object'],
@@ -103,8 +113,23 @@ export class MinIO implements INodeType {
 			const key = this.getNodeParameter('key', itemIndex) as string;
 
 			const method = __getOperation(resource, operation) as string;
-			if (method === 'presignedGetObject') {
-				item.json['url'] = await minio['presignedGetObject'](bucket, key);
+			switch (method) {
+				case 'presignedGetObject':
+					try {
+						item.json['url'] = await minio.presignedGetObject(bucket, key);
+					} catch (e) {
+						throw new NodeOperationError(this.getNode(), e);
+					}
+					break;
+				case 'presignedPutObject':
+					try {
+						item.json['url'] = await minio.presignedPutObject(bucket, key);
+					} catch (e) {
+						throw new NodeOperationError(this.getNode(), e);
+					}
+					break;
+				default:
+					throw new NodeOperationError(this.getNode(), `The operation "${operation}" is not supported!`);
 			}
 		}
 
