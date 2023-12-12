@@ -9,7 +9,7 @@ import {
 
 import { getMinio, searchBuckets } from './utils';
 
-export class MinIO implements INodeType {
+export class MinioNode implements INodeType {
 	description: INodeTypeDescription = {
 		name: 'minioNode',
 		displayName: 'MinIO',

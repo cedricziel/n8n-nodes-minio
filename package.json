@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-minio",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "n8n custom nodes for Minio",
   "keywords": [
     "n8n-community-node-package"
