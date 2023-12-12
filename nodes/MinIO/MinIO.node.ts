@@ -3,16 +3,17 @@ import {
 	INodeExecutionData,
 	INodeType,
 	INodeTypeDescription,
-	NodeExecutionWithMetadata, NodeOperationError,
-} from "n8n-workflow";
+	NodeExecutionWithMetadata,
+	NodeOperationError,
+} from 'n8n-workflow';
 
-import {getMinio} from "./utils";
+import { getMinio, searchBuckets } from './utils';
 
 export class MinIO implements INodeType {
 	description: INodeTypeDescription = {
-		name: "minioNode",
-		displayName: "MinIO",
-		description: "MinIO operation",
+		name: 'minioNode',
+		displayName: 'MinIO',
+		description: 'MinIO operation',
 		group: ['transform'],
 		inputs: ['main'],
 		outputs: ['main'],
@@ -32,10 +33,10 @@ export class MinIO implements INodeType {
 					{
 						name: 'Object',
 						value: 'object',
-					}
+					},
 				],
 				default: 'object',
-				required: true
+				required: true,
 			},
 			{
 				name: 'operation',
@@ -68,9 +69,28 @@ export class MinIO implements INodeType {
 			{
 				name: 'bucket',
 				displayName: 'Bucket',
-				type: 'string',
-				default: '',
+				type: 'resourceLocator',
 				required: true,
+				default: { mode: 'list', value: '' },
+				modes: [
+					{
+						displayName: 'From List',
+						name: 'list',
+						type: 'list',
+						placeholder: 'Select a Bucket...',
+						typeOptions: {
+							searchListMethod: 'searchBuckets',
+							searchFilterRequired: false,
+							searchable: true,
+						},
+					},
+					{
+						displayName: 'Name',
+						name: 'name',
+						type: 'string',
+						placeholder: 'bucket_name',
+					},
+				],
 			},
 			{
 				name: 'key',
@@ -89,16 +109,24 @@ export class MinIO implements INodeType {
 				name: 'minioCredentialsApi',
 				required: true,
 			},
-		]
-	}
+		],
+	};
 
-	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][] | NodeExecutionWithMetadata[][] | null> {
+	methods = {
+		listSearch: {
+			searchBuckets,
+		},
+	};
+
+	async execute(
+		this: IExecuteFunctions,
+	): Promise<INodeExecutionData[][] | NodeExecutionWithMetadata[][] | null> {
 		const items = this.getInputData();
 		let item: INodeExecutionData;
 
 		const minioCredentials = await this.getCredentials('minioCredentialsApi');
 		if (minioCredentials === undefined) {
-			throw new NodeOperationError(this.getNode(),'No credentials got returned!');
+			throw new NodeOperationError(this.getNode(), 'No credentials got returned!');
 		}
 
 		for (let itemIndex = 0; itemIndex < items.length; itemIndex++) {
@@ -106,14 +134,12 @@ export class MinIO implements INodeType {
 
 			const minio = getMinio(minioCredentials);
 
-			const resource = this.getNodeParameter('resource', itemIndex) as string;
 			const operation = this.getNodeParameter('operation', itemIndex) as string;
 
 			const bucket = this.getNodeParameter('bucket', itemIndex) as string;
 			const key = this.getNodeParameter('key', itemIndex) as string;
 
-			const method = __getOperation(resource, operation) as string;
-			switch (method) {
+			switch (operation) {
 				case 'presignedGetObject':
 					try {
 						item.json['url'] = await minio.presignedGetObject(bucket, key);
@@ -129,18 +155,13 @@ export class MinIO implements INodeType {
 					}
 					break;
 				default:
-					throw new NodeOperationError(this.getNode(), `The operation "${operation}" is not supported!`);
+					throw new NodeOperationError(
+						this.getNode(),
+						`The operation "${operation}" is not supported!`,
+					);
 			}
 		}
 
 		return this.prepareOutputData(items);
 	}
-}
-
-function __getOperation(resource: string, operation: string) : string | null {
-	if (resource === 'object' && operation === 'presignedGet') {
-		return 'presignedGetObject';
-	}
-
-	return null;
 }
