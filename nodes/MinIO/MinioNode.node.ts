@@ -18,13 +18,13 @@ export class MinIO implements INodeType {
 		inputs: ['main'],
 		outputs: ['main'],
 		subtitle: '={{$parameter["operation"]}}',
-		icon: 'file:minio.png',
+		icon: 'file:minio.svg',
 		properties: [
 			{
 				displayName: 'Resource',
-				description: 'The resource to operate on.',
 				name: 'resource',
 				type: 'options',
+				noDataExpression: true,
 				options: [
 					{
 						name: 'Bucket',
@@ -39,9 +39,10 @@ export class MinIO implements INodeType {
 				required: true,
 			},
 			{
-				name: 'operation',
 				displayName: 'Operation',
+				name: 'operation',
 				type: 'options',
+				noDataExpression: true,
 				default: 'presignedGetObject',
 				options: [
 					{
@@ -53,6 +54,7 @@ export class MinIO implements INodeType {
 								resource: ['object'],
 							},
 						},
+						action: 'Generate a presigned GET URL',
 					},
 					{
 						name: 'Presigned PUT URL',
@@ -63,12 +65,13 @@ export class MinIO implements INodeType {
 								resource: ['object'],
 							},
 						},
+						action: 'Generate a presigned PUT URL',
 					},
 				],
 			},
 			{
-				name: 'bucket',
 				displayName: 'Bucket',
+				name: 'bucket',
 				type: 'resourceLocator',
 				required: true,
 				default: { mode: 'list', value: '' },
@@ -93,8 +96,8 @@ export class MinIO implements INodeType {
 				],
 			},
 			{
-				name: 'key',
 				displayName: 'Key',
+				name: 'key',
 				type: 'string',
 				default: '',
 				required: true,

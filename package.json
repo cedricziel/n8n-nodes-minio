@@ -33,7 +33,7 @@
       "dist/credentials/MinIOCredentialsApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/MinIO/MinIO.node.js"
+      "dist/nodes/MinIO/MinioNode.node.js"
     ]
   },
   "devDependencies": {
