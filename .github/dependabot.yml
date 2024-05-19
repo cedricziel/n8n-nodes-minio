@@ -13,8 +13,7 @@ updates:
     assignees:
       - cedricziel
     groups:
-       dev-dependencies:
-          applies-to: version-updates # Applies the group rule to version updates
+       n8n:
           patterns:
             - n8n-*
 
