@@ -12,6 +12,11 @@ updates:
       interval: "daily"
     assignees:
       - cedricziel
+    groups:
+       dev-dependencies:
+          applies-to: version-updates # Applies the group rule to version updates
+          patterns:
+            - n8n-*
 
   # Enable version updates for Docker
   - package-ecosystem: "github-actions"
