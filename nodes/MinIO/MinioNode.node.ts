@@ -67,6 +67,17 @@ export class MinioNode implements INodeType {
 						},
 						action: 'Generate a presigned PUT URL',
 					},
+					{
+						name: 'Remove Object',
+						value: 'removeObject',
+						description: 'Remove an object from the bucket',
+						displayOptions: {
+							show: {
+								resource: ['object'],
+							},
+						},
+						action: 'Remove an object from the bucket',
+					},
 				],
 			},
 			{
@@ -155,6 +166,13 @@ export class MinioNode implements INodeType {
 				case 'presignedPutObject':
 					try {
 						item.json['url'] = await minio.presignedPutObject(bucket, key);
+					} catch (e) {
+						throw new NodeOperationError(this.getNode(), e);
+					}
+					break;
+				case 'removeObject':
+					try {
+						await minio.removeObject(bucket, key);
 					} catch (e) {
 						throw new NodeOperationError(this.getNode(), e);
 					}
