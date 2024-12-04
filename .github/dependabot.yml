@@ -10,6 +10,10 @@ updates:
        n8n:
           patterns:
             - n8n-*
+    commit-message:
+      prefix: fix
+      prefix-development: chore
+      include: scope
 
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -17,3 +21,7 @@ updates:
       interval: "weekly"
     assignees:
       - cedricziel
+    commit-message:
+      prefix: fix
+      prefix-development: chore
+      include: scope
