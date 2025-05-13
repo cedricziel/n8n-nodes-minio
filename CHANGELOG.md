@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.5](https://github.com/cedricziel/n8n-nodes-minio/compare/v0.1.4...v0.1.5) (2025-05-13)
+
+
+### Bug Fixes
+
+* **deps:** bump minio from 8.0.3 to 8.0.5 ([#116](https://github.com/cedricziel/n8n-nodes-minio/issues/116)) ([8643fc4](https://github.com/cedricziel/n8n-nodes-minio/commit/8643fc4c10a802b59551424e32898e1f5a6ceace))
+
 ## [0.1.4](https://github.com/cedricziel/n8n-nodes-minio/compare/v0.1.3...v0.1.4) (2024-12-20)
 
 
