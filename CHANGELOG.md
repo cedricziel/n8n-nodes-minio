@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.6](https://github.com/cedricziel/n8n-nodes-minio/compare/v0.1.5...v0.1.6) (2026-03-03)
+
+
+### Bug Fixes
+
+* **deps:** bump amannn/action-semantic-pull-request from 5 to 6 ([#155](https://github.com/cedricziel/n8n-nodes-minio/issues/155)) ([ac8a88a](https://github.com/cedricziel/n8n-nodes-minio/commit/ac8a88a6cbd5d7b3f508a79bcf5214bdf6727837))
+
 ## [0.1.5](https://github.com/cedricziel/n8n-nodes-minio/compare/v0.1.4...v0.1.5) (2026-03-02)
 
 
