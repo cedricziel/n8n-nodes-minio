@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.9](https://github.com/cedricziel/n8n-nodes-minio/compare/v0.1.8...v0.1.9) (2026-05-06)
+
+
+### Bug Fixes
+
+* **deps:** bump googleapis/release-please-action from 4 to 5 ([#226](https://github.com/cedricziel/n8n-nodes-minio/issues/226)) ([0b1d91b](https://github.com/cedricziel/n8n-nodes-minio/commit/0b1d91b57614cbc81a323946428d5fe5bc1d9473))
+
 ## [0.1.8](https://github.com/cedricziel/n8n-nodes-minio/compare/v0.1.7...v0.1.8) (2026-03-06)
 
 
