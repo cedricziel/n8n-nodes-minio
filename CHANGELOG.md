@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.10](https://github.com/cedricziel/n8n-nodes-minio/compare/v0.1.9...v0.1.10) (2026-06-23)
+
+
+### Bug Fixes
+
+* **deps:** bump actions/checkout from 6 to 7 ([#242](https://github.com/cedricziel/n8n-nodes-minio/issues/242)) ([d0f6c8f](https://github.com/cedricziel/n8n-nodes-minio/commit/d0f6c8f5e30d11848d7b724d571ea748085dcbee))
+
 ## [0.1.9](https://github.com/cedricziel/n8n-nodes-minio/compare/v0.1.8...v0.1.9) (2026-05-06)
 
 
