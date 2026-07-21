@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.11](https://github.com/cedricziel/n8n-nodes-minio/compare/v0.1.10...v0.1.11) (2026-07-21)
+
+
+### Bug Fixes
+
+* **deps:** bump actions/setup-node from 6 to 7 ([#254](https://github.com/cedricziel/n8n-nodes-minio/issues/254)) ([92c488e](https://github.com/cedricziel/n8n-nodes-minio/commit/92c488ecafc445881702da8d28097c32b5b44f93))
+
 ## [0.1.10](https://github.com/cedricziel/n8n-nodes-minio/compare/v0.1.9...v0.1.10) (2026-06-23)
 
 
