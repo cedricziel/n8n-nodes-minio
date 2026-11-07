@@ -40,13 +40,14 @@
     "@types/express": "^5.0.6",
     "@types/request-promise-native": "~1.0.15",
     "@typescript-eslint/parser": "~8.72",
+    "@typescript/native": "npm:typescript@~7.0.2",
     "eslint": "^8.55.0",
     "eslint-plugin-n8n-nodes-base": "^1.11.0",
     "gulp": "^4.0.2",
     "n8n-core": "*",
     "n8n-workflow": "*",
     "prettier": "^3.1.1",
-    "typescript": "~5.7.2"
+    "typescript": "npm:@typescript/typescript6@^6.0.2"
   },
   "dependencies": {
     "minio": "^8.0.0"
